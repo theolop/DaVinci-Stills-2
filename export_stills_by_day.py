@@ -6,10 +6,22 @@ New comment !
 from python_get_resolve import GetResolve
 import json
 import time
+import sys
+import argparse
 
-TARGET_DIR = "/Volumes/Macintosh HD/Users/theolopez/Desktop/STILLS/"
-PROJECT_PREFIX = "DMPTO"
-PRESET_NAME = "EXPORT_STILL_PNG"
+parser = argparse.ArgumentParser()
+parser.add_argument('--preset-name', dest='preset_name', type=str, help='DaVinci stills preset name')
+parser.add_argument('--target-dir', dest='target_dir', type=str, help='Target directory for stills export')
+parser.add_argument('--project-prefix', dest='project_prefix', type=str, help='Project prefix for stills export')
+args = parser.parse_args()
+
+#TARGET_DIR = "/Volumes/Macintosh HD/Users/theolopez/Desktop/STILLS/"
+#PROJECT_PREFIX = "DMPTO"
+#PRESET_NAME = "EXPORT_STILL_PNG"
+
+PRESET_NAME = args.preset_name
+PROJECT_PREFIX = args.project_prefix
+TARGET_DIR = args.target_dir
 
 def getMarkersOfTimeline(timeline, project, folder, rootFolder):
     markers = timeline.GetMarkers()
